@@ -1965,7 +1965,9 @@ sub __render_from_workflow {
         }
     }
 
+    #
     # Right block
+    #
     if ($wf_info->{workflow}->{id} ) {
 
         if ($view eq 'result' && $wf_info->{workflow}->{proc_state} !~ /(finished|failed)/) {
@@ -2006,6 +2008,18 @@ sub __render_from_workflow {
             }
             elsif ($cfg->{field}) {
                 $value = $wfdetails_info->{ $cfg->{field} } // '-';
+            }
+
+            # if it's a link: render URL template ("page")
+            if ($cfg->{link}) {
+                $value = {
+                    label => $value,
+                    page => $self->send_command_v2( render_template => {
+                        template => $cfg->{link}->{page},
+                        params => $wfdetails_info,
+                    }),
+                    target => $cfg->{target} || 'modal',
+                }
             }
 
             push @data, {
