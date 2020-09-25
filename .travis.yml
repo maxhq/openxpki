@@ -46,6 +46,7 @@ addons:
 # Service setup
 #
 before_install:
+    - dpkg --get-selections | grep mysql
     - ./tools/testenv/mysql-wait-for-db.sh
     - ./tools/testenv/mysql-create-db.sh
     - ./tools/testenv/mysql-create-user.sh
