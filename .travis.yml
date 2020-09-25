@@ -1,6 +1,6 @@
 # We use our own Perl setup (language "generic" uses a stripped-down TravisCI image)
 language: generic
-
+os: linux
 # Ubuntu 18.04 "Bionic" (Debian Buster equivalent)
 dist: bionic
 
@@ -15,7 +15,7 @@ env:
         - OXI_TEST_DB_MYSQL_DBPORT=3306
         - OXI_TEST_DB_MYSQL_DBUSER=root
         - OXI_TEST_DB_MYSQL_DBPASSWORD=
-    matrix:
+    jobs:
         - OXI_TEST_RUN=unit_coverage
         - OXI_TEST_RUN=api2
         - OXI_TEST_RUN=webui
