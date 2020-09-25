@@ -48,7 +48,7 @@ addons:
 #
 before_install:
     - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xf1656f24c74cd1d8
-    - apt-get -q update
+    - sudo apt-get -q update
     - sudo apt-get -y remove mysql-client mysql-client-5.7 mysql-client-core-5.7 mysql-common mysql-server-5.7 mysql-server-core-5.7
     - sudo apt-get -y install mariadb-server-10.1
     - ./tools/testenv/mysql-wait-for-db.sh
