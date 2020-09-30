@@ -1,5 +1,8 @@
 # We use our own Perl setup (language "generic" uses a stripped-down TravisCI image)
 language: generic
+virt: lxd
+# TravisCI does not support lxd (containers) with amd64
+arch: arm64
 os: linux
 # Ubuntu 18.04 "Bionic" (Debian Buster equivalent)
 dist: bionic
