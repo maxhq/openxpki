@@ -54,7 +54,11 @@ before_install:
     - sudo apt-get -y install tree
     - tree /etc/mysql
     - sudo cat /etc/mysql/debian.cnf
+    # we need to prevent invoke-rc.d from starting MariaDB as this would make
+    # the TravisCI LXD container hang forever. So we pretend it's runlevel 1
+    # where most services aren't started: (https://askubuntu.com/a/221938)
     - sudo echo -e '#!/bin/sh\nexit 101' | sudo install -m 755 /dev/stdin /usr/sbin/policy-rc.d && sudo apt-get -y install mariadb-server-10.1 libmariadbclient-dev && sudo rm -f /usr/sbin/policy-rc.d
+    - sudo /usr/bin/mysqld_safe 2>&1 >/dev/null &
     - sudo ./tools/testenv/mysql-wait-for-db.sh
     - sudo ./tools/testenv/mysql-create-db.sh
     - sudo ./tools/testenv/mysql-create-user.sh
