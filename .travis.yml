@@ -52,7 +52,7 @@ before_install:
     - sudo apt-get -y purge mysql-client-5.7 mysql-client-core-5.7 mysql-common mysql-server-5.7 mysql-server-core-5.7
     - sudo apt-get -y install tree
     - tree /etc/mysql
-    - cat /etc/mysql/debian.cnf
+    - sudo cat /etc/mysql/debian.cnf
     - sudo apt-get -y install mariadb-server-10.1 libmariadbclient-dev
     - ./tools/testenv/mysql-wait-for-db.sh
     - ./tools/testenv/mysql-create-db.sh
