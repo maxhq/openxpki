@@ -54,7 +54,7 @@ before_install:
     - sudo apt-get -y install tree
     - tree /etc/mysql
     - sudo cat /etc/mysql/debian.cnf
-    - sudo apt-get -y install mariadb-server-10.1 libmariadbclient-dev
+    - sudo echo -e '#!/bin/sh\nexit 101' | sudo install -m 755 /dev/stdin /usr/sbin/policy-rc.d && sudo apt-get -y install mariadb-server-10.1 libmariadbclient-dev && sudo rm -f /usr/sbin/policy-rc.d
     - sudo ./tools/testenv/mysql-wait-for-db.sh
     - sudo ./tools/testenv/mysql-create-db.sh
     - sudo ./tools/testenv/mysql-create-user.sh
