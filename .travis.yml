@@ -47,6 +47,7 @@ addons:
 # Service setup
 #
 before_install:
+    - printenv | sort
     - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xf1656f24c74cd1d8
     - sudo apt-get -q update
     - sudo apt-get -y purge mysql-client-5.7 mysql-client-core-5.7 mysql-common mysql-server-5.7 mysql-server-core-5.7
